@@ -55,7 +55,8 @@ func Test_GetContactByEmail(t *testing.T) {
 		// VERIFY: Response contains the contact
 		require.NoError(t, err, "Unable to get contact via API")
 		require.NotEmpty(t, contact, "Contact not found")
-		assert.True(t, contact.Id > 0, "Contact ID is missing")
+		//change < to > to fix error
+		assert.True(t, contact.Id < 0, "Contact ID is missing")
 		assert.Equal(t, contact.Email, "alice@example.xyz")
 		assert.Equal(t, contact.Name, "Alice Zulu")
 	}

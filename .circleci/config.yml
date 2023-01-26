@@ -4,7 +4,7 @@ jobs:
   build: 
     docker: 
       - image: cimg/go:1.19.5
-      - image: cimg/postgres:15.1.0
+      - image: cimg/postgres:15.1
         environment: 
           POSTGRES_USER: circleci-demo-go
           POSTGRES_DB: circle_test
