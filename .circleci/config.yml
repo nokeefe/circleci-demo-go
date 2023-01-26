@@ -1,9 +1,10 @@
-version: 2.1 
+version: 2.1
+
 jobs: 
   build: 
     docker: 
-      - image: circleci/golang:1.12
-      - image: circleci/postgres:9.6-alpine
+      - image: cimg/go:1.19.5
+      - image: cimg/postgres:15.1.0
         environment: 
           POSTGRES_USER: circleci-demo-go
           POSTGRES_DB: circle_test
@@ -27,7 +28,7 @@ jobs:
           command: | 
             go list ./... | circleci tests run  \
             --command='xargs gotestsum --junitfile ${TEST_RESULTS}/gotestsum-report.xml -- $(go list ./... | circleci tests split --split-by=timings --timings-type=classname)' \
-            --batch-count=8 \
+            --batch-count=9 \
             --fail-fast
       - run: make 
       - save_cache:
