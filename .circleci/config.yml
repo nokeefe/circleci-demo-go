@@ -26,6 +26,7 @@ jobs:
             CONTACTS_DB_URL: "postgres://circleci-demo-go@localhost:5432/circle_test?sslmode=disable"
             CONTACTS_DB_MIGRATIONS: /home/circleci/project/db/migrations            
           command: | 
+            echo "running unit tests"
             go list ./... | circleci tests run  \
             --command='xargs gotestsum --junitfile ${TEST_RESULTS}/gotestsum-report.xml -- $(go list ./... | circleci tests split --split-by=timings --timings-type=classname)' \
             --batch-count=2 \
