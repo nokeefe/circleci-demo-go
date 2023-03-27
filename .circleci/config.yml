@@ -53,8 +53,14 @@ jobs:
           destination: raw-test-output
       - store_test_results: # upload test results for display in Test Summary
           path: /tmp/test-results
+  runner:
+    machine: true
+    resource_class: nokeefe/resourceclass1
+    steps:
+      - run: echo "runner test"
 
 workflows:
   build-workflow:
     jobs:
       - build
+      - runner
