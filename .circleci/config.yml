@@ -57,7 +57,7 @@ jobs:
     machine: true
     resource_class: nokeefe/resourceclass1
     steps:
-      - run: echo "runner test"
+      - run: echo "runner test!"
 
 workflows:
   build-workflow:
