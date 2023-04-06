@@ -72,7 +72,7 @@ jobs:
       # - when:
         # condition: << pipeline.parameters.cloud_only >>
         # steps:
-      - run: echo "hello world"
+      - run: echo "hello world, here's our << pipeline.parameters.cloud_parameter >>"
 
 workflows:
   build-workflow:
