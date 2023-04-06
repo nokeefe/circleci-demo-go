@@ -1,8 +1,5 @@
 version: 2.1
 
-# orbs:
-#   continuation: circleci/continuation@0.3.1
-
 parameters:
   cloud_job_parameter:
     type: string
@@ -64,6 +61,7 @@ jobs:
           destination: raw-test-output
       - store_test_results: # upload test results for display in Test Summary
           path: /tmp/test-results
+
   # runner:
   #   docker:
   #     - image: cimg/base:2023.04
@@ -87,10 +85,10 @@ workflows:
 
   cloud-workflow:
     when: 
-      or: [ << pipeline.parameters.cloud_workflow_parameter >> ]
+      only: [ << pipeline.parameters.cloud_workflow_parameter >> ]
     jobs:
       - cloud
-      # - runner
+
   # runner-workflow:
   #   when: << pipeline.parameters.single_workflow >>
   #   jobs:
