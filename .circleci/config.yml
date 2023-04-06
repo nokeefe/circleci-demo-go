@@ -81,7 +81,7 @@ workflows:
 
   cloud-workflow:
     when: 
-      equal: [ cloud, <<pipeline.parameters.cloud_parameter >> ]
+      equal: [ <<pipeline.parameters.cloud_parameter >> ]
     jobs:
       - cloud
       # - runner
