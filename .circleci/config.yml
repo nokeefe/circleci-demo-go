@@ -1,9 +1,13 @@
 version: 2.1
 
 parameters:
-  cloud_parameter:
+  cloud_job_parameter:
     type: string
-    default: "default_parameter"
+    default: "default_job_parameter"
+  cloud_workflow_parameter:
+    type: enum
+    enum: [ cloud ]
+    default: cloud
 
 jobs: 
   build: 
@@ -72,7 +76,7 @@ jobs:
       # - when:
         # condition: << pipeline.parameters.cloud_only >>
         # steps:
-      - run: echo "hello world, here's our << pipeline.parameters.cloud_parameter >>"
+      - run: echo "hello world, here's our << pipeline.parameters.cloud_job_parameter >>"
 
 workflows:
   build-workflow:
@@ -81,7 +85,7 @@ workflows:
 
   cloud-workflow:
     when: 
-      equal: [ <<pipeline.parameters.cloud_parameter >> ]
+      equal: [ cloud, <<pipeline.parameters.cloud_workflow_parameter >> ]
     jobs:
       - cloud
       # - runner
