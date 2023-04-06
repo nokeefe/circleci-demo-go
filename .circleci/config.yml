@@ -84,8 +84,9 @@ workflows:
       - build
 
   cloud-workflow:
-    when: 
-      only: [ << pipeline.parameters.cloud_workflow_parameter >> ]
+    when:
+      or:
+        - equal: [ cloud, << pipeline.parameters.cloud_workflow_parameter >> ]
     jobs:
       - cloud
 
