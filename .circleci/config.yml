@@ -1,5 +1,10 @@
 version: 2.1
 
+# parameters:
+#   single_workflow:
+#     type: boolean
+#     default: true
+
 jobs: 
   build: 
     docker: 
@@ -53,14 +58,30 @@ jobs:
           destination: raw-test-output
       - store_test_results: # upload test results for display in Test Summary
           path: /tmp/test-results
-  runner:
-    machine: true
-    resource_class: nokeefe/resourceclass1
+  # runner:
+  #   docker:
+  #     - image: cimg/base:2023.04
+  #   resource_class: nokeefe/container-1
+  #   steps:
+  #     - run: echo "runner test!"
+
+  cloud:
+    docker:
+      - image: cimg/base:2023.04
     steps:
-      - run: echo "runner test!"
+      - run: echo "hello world"
 
 workflows:
   build-workflow:
     jobs:
       - build
-      - runner
+      - cloud
+
+  cloud-only:
+    jobs:
+      - cloud
+      # - runner
+  # runner-workflow:
+  #   when: << pipeline.parameters.single_workflow >>
+  #   jobs:
+  #     - runner
