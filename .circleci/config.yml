@@ -1,9 +1,9 @@
 version: 2.1
 
-# parameters:
-#   single_workflow:
-#     type: boolean
-#     default: true
+parameters:
+  cloud_only:
+    type: string
+    default: ""
 
 jobs: 
   build: 
@@ -69,7 +69,9 @@ jobs:
     docker:
       - image: cimg/base:2023.04
     steps:
-      - run: echo "hello world"
+      - when:
+        condition: << pipeline.parameters.cloud_only >>
+          - run: echo "hello world"
 
 workflows:
   build-workflow:
