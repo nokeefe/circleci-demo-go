@@ -87,6 +87,7 @@ workflows:
     when:
       or:
         - equal: [ true, << pipeline.parameters.cloud_workflow_parameter >> ]
+        - << pipeline.parameters.cloud_workflow_parameter >>
     jobs:
       - cloud
 
