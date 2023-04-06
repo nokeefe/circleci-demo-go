@@ -1,9 +1,9 @@
 version: 2.1
 
 parameters:
-  cloud_only:
+  cloud_parameter:
     type: string
-    default: "parameter_set"
+    default: "default_parameter"
 
 jobs: 
   build: 
@@ -78,11 +78,10 @@ workflows:
   build-workflow:
     jobs:
       - build
-      - cloud
 
-  cloud-only:
-    when: 
-      equal: [ cloud, <<pipeline.parameters.cloud_only >> ]
+  cloud-workflow:
+    # when: 
+    #   equal: [ cloud, <<pipeline.parameters.cloud_only >> ]
     jobs:
       - cloud
       # - runner
