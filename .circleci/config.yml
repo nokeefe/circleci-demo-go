@@ -80,8 +80,8 @@ workflows:
       - build
 
   cloud-workflow:
-    # when: 
-    #   equal: [ cloud, <<pipeline.parameters.cloud_only >> ]
+    when: 
+      equal: [ cloud, <<pipeline.parameters.cloud_parameter >> ]
     jobs:
       - cloud
       # - runner
