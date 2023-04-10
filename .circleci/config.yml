@@ -4,9 +4,9 @@ parameters:
   cloud_job_parameter:
     type: string
     default: "default_job_parameter"
-  # cloud_workflow_parameter:
-  #   type: boolean
-  #   default: false
+  cloud_workflow_parameter:
+    type: boolean
+    default: false
 
 jobs: 
   build: 
@@ -85,7 +85,9 @@ workflows:
 
   cloud-workflow:
     when:
-      equal: [ api, << pipeline.trigger_source >> ]
+      and:
+        - equal: [ api, << pipeline.trigger_source >> ]
+        - << pipeline.parameters.cloud_workflow_parameter >>
     jobs:
       - cloud
 
