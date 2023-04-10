@@ -4,9 +4,9 @@ parameters:
   cloud_job_parameter:
     type: string
     default: "default_job_parameter"
-  cloud_workflow_parameter:
-    type: boolean
-    default: false
+  # cloud_workflow_parameter:
+  #   type: boolean
+  #   default: false
 
 jobs: 
   build: 
