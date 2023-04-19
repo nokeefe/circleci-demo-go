@@ -22,9 +22,6 @@ jobs:
     steps: 
       - checkout 
       - run: mkdir -p $TEST_RESULTS # create the test results directory
-      # - restore_cache: 
-      #     keys:
-      #       - go-mod-v4-{{ checksum "go.sum" }}
       - run:
           name: Waiting for Postgres to be ready
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
@@ -39,11 +36,7 @@ jobs:
             --command='xargs gotestsum --junitfile ${TEST_RESULTS}/gotestsum-report.xml -- $(go list ./... | circleci tests split --split-by=timings --timings-type=classname)' \
             --batch-count=2 \
             --fail-fast
-      - run: make 
-      # - save_cache:
-      #     key: go-mod-v4-{{ checksum "go.sum" }}
-      #     paths:
-      #       - "/go/pkg/mod"
+      - run: make
       - run:
           name: Start service
           environment:
@@ -62,20 +55,10 @@ jobs:
       - store_test_results: # upload test results for display in Test Summary
           path: /tmp/test-results
 
-  # runner:
-  #   docker:
-  #     - image: cimg/base:2023.04
-  #   resource_class: nokeefe/container-1
-  #   steps:
-  #     - run: echo "runner test!"
-
   cloud:
     docker:
       - image: cimg/base:2023.04
     steps:
-      # - when:
-        # condition: << pipeline.parameters.cloud_only >>
-        # steps:
       - run: echo "hello world, here's our << pipeline.parameters.cloud_job_parameter >>"
 
 workflows:
@@ -90,8 +73,3 @@ workflows:
         - << pipeline.parameters.cloud_workflow_parameter >>
     jobs:
       - cloud
-
-  # runner-workflow:
-  #   when: << pipeline.parameters.single_workflow >>
-  #   jobs:
-  #     - runner
