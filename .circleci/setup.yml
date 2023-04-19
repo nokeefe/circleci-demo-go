@@ -1,0 +1,22 @@
+version: 2.1
+
+setup: true
+
+orbs:
+  continuation: circleci/continuation@0.2.0
+
+jobs:
+  setup:
+    docker: 
+      - image: cimg/node:19.7.0
+    resource_class: small
+    steps:
+      - checkout
+      - run: node .circleci/generated/index.js
+      - continuation/continue:
+          configuration_path: basic_workflow.yml
+
+workflows:
+  setup-workflow:
+    jobs:
+      - setup
