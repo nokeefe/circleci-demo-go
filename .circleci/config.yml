@@ -3,20 +3,21 @@ version: 2.1
 setup: true
 
 orbs:
-  continuation: circleci/continuation@0.2.0
-
+  continuation: circleci/continuation@0.3.1
+  node: circleci/node@5.0.2
 jobs:
-  setup:
-    docker: 
-      - image: cimg/node:19.7.0
-    resource_class: small
+  generate-config:
+    executor: node/default
     steps:
       - checkout
-      - run: node .circleci/generated/index.js
+      - node/install-packages:
+          app-dir: .circleci/generated
+      - run:
+          name: Generate config
+          command: node .circleci/generated/index.js
       - continuation/continue:
-          configuration_path: basic_workflow.yml
-
+          configuration_path: ./basic_workflow.yml
 workflows:
-  setup-workflow:
+  dynamic-workflow:
     jobs:
-      - setup
+      - generate-config
