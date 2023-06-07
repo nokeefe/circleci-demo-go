@@ -67,7 +67,8 @@ workflows:
       - build
           filters:
             branches:
-              only: /^dev-.*/
+              only: 
+                - /^dev-.*/
       - cloud
 
   cloud-workflow:
