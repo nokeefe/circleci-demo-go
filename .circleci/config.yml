@@ -64,7 +64,7 @@ jobs:
 workflows:
   build-workflow:
     jobs:
-      - build
+      - build:
           filters:
             branches:
               only: /^dev-.*/
