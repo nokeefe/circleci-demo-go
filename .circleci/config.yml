@@ -63,11 +63,14 @@ jobs:
 
 workflows:
   build-workflow:
+    filters:
+      branches:
+        only: /^dev-.*/
     jobs:
-      - build:
-          filters:
-            branches:
-              only: /^dev-.*/
+      - build #:
+          # filters:
+          #   branches:
+          #     only: /^dev-.*/
       - cloud
 
   cloud-workflow:
