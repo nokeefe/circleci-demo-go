@@ -65,6 +65,7 @@ workflows:
   build-workflow:
     jobs:
       - build
+          name: build
           filters:
             branches:
               only: 
