@@ -65,6 +65,9 @@ workflows:
   build-workflow:
     jobs:
       - build
+        filters:
+          only: /^dev-.*/
+      - cloud
 
   cloud-workflow:
     when:
