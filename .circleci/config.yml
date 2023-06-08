@@ -68,7 +68,7 @@ jobs:
             echo "4"
             echo "5"
             echo "6"
-            
+            echo "7"
             echo "hello world, here's the third test groups << pipeline.parameters.cloud_job_parameter >>"
 
 workflows:
