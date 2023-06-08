@@ -59,7 +59,7 @@ jobs:
     docker:
       - image: cimg/base:2023.04
     steps:
-      - run: echo "hello world, here's  << pipeline.parameters.cloud_job_parameter >>"
+      - run: echo "hello world, here's the groups << pipeline.parameters.cloud_job_parameter >>"
 
 workflows:
   build-workflow:
