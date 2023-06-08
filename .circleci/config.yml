@@ -63,6 +63,7 @@ jobs:
           name: create file and echo
           command: |
             echo "1"
+            echo "2"
             echo "hello world, here's the third test groups << pipeline.parameters.cloud_job_parameter >>"
 
 workflows:
