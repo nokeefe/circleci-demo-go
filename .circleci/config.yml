@@ -63,7 +63,7 @@ jobs:
           name: create file and echo
           command: |
             touch test<< pipeline.number >>.txt
-            echo "hello world, here's the first test groups << pipeline.parameters.cloud_job_parameter >>"
+            echo "hello world, here's the second test groups << pipeline.parameters.cloud_job_parameter >>"
 
 workflows:
   build-workflow:
