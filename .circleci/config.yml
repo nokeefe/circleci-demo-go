@@ -74,11 +74,12 @@ jobs:
 
 workflows:
   build-workflow:
+    when: /^pr*/
     jobs:
-      - build:
-          filters:
-            branches:
-              only: /^dev-.*/
+      - build
+          # filters:
+          #   branches:
+          #     only: /^dev-.*/
       - cloud
 
   cloud-workflow:
