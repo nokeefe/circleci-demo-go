@@ -70,15 +70,24 @@ jobs:
             echo "6"
             echo "7"
             echo "8"
+            echo "9"
+            echo "10"
+            echo "11"
+            echo "12"
+            echo "13"
+            echo "14"
             echo "hello world, here's the third test groups << pipeline.parameters.cloud_job_parameter >>"
 
 workflows:
   build-workflow:
+    when: |
+      /^pr*/
+      /^dev-*/
     jobs:
-      - build:
-          filters:
-            branches:
-              only: /^dev-.*/
+      - build
+          # filters:
+          #   branches:
+          #     only: /^dev-.*/
       - cloud
 
   cloud-workflow:
