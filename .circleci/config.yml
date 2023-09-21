@@ -34,7 +34,7 @@ jobs:
             echo "running unit tests"
             go list ./... | circleci tests run  \
             --command='xargs gotestsum --junitfile ${TEST_RESULTS}/gotestsum-report.xml -- $(go list ./... | circleci tests split --split-by=timings --timings-type=classname)'
-      - run: mak # Set to make to fix error
+      - run: make
       - run:
           name: Start service
           environment:
@@ -81,7 +81,6 @@ workflows:
     when: |
       /^pr*/
       /^dev-*/
-      /^smartling-translation-completed-*/
     jobs:
       - build
           # filters:
